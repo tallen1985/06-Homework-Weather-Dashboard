@@ -1,0 +1,111 @@
+:root {
+    --teal: rgb(39, 99, 143);
+    --lighterTeal: rgb(69, 133, 179);
+}
+
+* {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: var(--teal);
+}
+header {
+    margin: 10px auto;
+    width: 50%;
+    background-color: rgb(1, 53, 121);
+    border: 2px solid lightgray;
+    border-radius: 20px;
+    box-shadow:3px 3px 3px lightgray;
+    text-align: center;
+    height: 75px;
+    color: white;
+}
+header h1 {
+    padding-top: 10px;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    margin: 5px;
+}
+
+aside {
+    color: white;
+    flex: 0 1 200px;
+    margin: 0 10px;
+}  
+    aside input {
+        width: 100%;
+    }
+    aside .btn {
+        margin: 10px 0;
+        width: 100%;
+    }
+    aside #searchHistoryUL {
+        height: 5px;
+        color: black;
+        margin: 5px 0;
+        padding: 10px 0 0 0 ;
+        border-top: 3px solid black;
+    }
+    aside .searchItem {
+        text-align: center;
+        margin: 10px 0;
+        list-style: none;
+        background-color: lightblue;
+        border: 1px solid lightgray;
+        border-radius: 3px;
+        box-shadow: 1px 1px 1px darkslategray;
+        padding: 5px;
+
+    }
+
+#WeatherDIV {
+    flex: 1 0 350px;
+}
+.weatherSection {
+    background-color: var(--lighterTeal);
+    flex: 1 0 350px;
+    margin: 15px;
+    padding: 10px;
+    border: 2px solid lightgray;
+    border-radius: 20px;
+    box-shadow: 1px 1px 1px darkslategray;
+}
+#currentWeatherDIV h1 {
+    color: white;
+}
+
+#forecastDIV {
+    flex: 1 0 350px;
+    color: white;
+}
+#forecastDIV ul {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0 15px;
+    justify-content: center;
+}
+#forecastDIV .dayCard {
+    margin: 5px 10px;
+    background-color: var(--teal);
+    width: 200px;
+    height: 300px;
+    border: 2px solid lightgray;
+    border-radius: 20px;
+    box-shadow: 1px 1px 1px darkslategray;
+    text-align: center;
+}
+
+footer {
+    font-size: .75rem;
+    color: white;
+    text-align: center;
+    margin 0 auto;
+}
