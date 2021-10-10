@@ -1,6 +1,8 @@
 :root {
-    --teal: rgb(39, 99, 143);
-    --lighterTeal: rgb(69, 133, 179);
+    --header: #013579;
+    --teal:#39707e;
+    --lighterTeal: #EAEEFF;
+    --cardBackground: #D1A617;
 }
 
 * {
@@ -14,7 +16,7 @@ body {
 header {
     margin: 10px auto;
     width: 50%;
-    background-color: rgb(1, 53, 121);
+    background-color: var(--header);
     border: 2px solid lightgray;
     border-radius: 20px;
     box-shadow:3px 3px 3px lightgray;
@@ -30,22 +32,24 @@ main {
     width: 100%;
     display: flex;
     margin: 5px;
+    flex-wrap: wrap;
 }
 
 aside {
     color: white;
-    flex: 0 1 200px;
+    flex: 1 1 200px;
     margin: 0 10px;
+    text-align: center;
 }  
     aside input {
         width: 100%;
+        text-align: center;
     }
     aside .btn {
         margin: 10px 0;
         width: 100%;
     }
     aside #searchHistoryUL {
-        height: 5px;
         color: black;
         margin: 5px 0;
         padding: 10px 0 0 0 ;
@@ -60,11 +64,10 @@ aside {
         border-radius: 3px;
         box-shadow: 1px 1px 1px darkslategray;
         padding: 5px;
-
     }
 
 #WeatherDIV {
-    flex: 1 0 350px;
+    flex: 8 0 350px;
 }
 .weatherSection {
     background-color: var(--lighterTeal);
@@ -72,16 +75,16 @@ aside {
     margin: 15px;
     padding: 10px;
     border: 2px solid lightgray;
-    border-radius: 20px;
+    border-radius: 5px;
     box-shadow: 1px 1px 1px darkslategray;
 }
 #currentWeatherDIV h1 {
-    color: white;
+    color: black
 }
 
 #forecastDIV {
     flex: 1 0 350px;
-    color: white;
+    color: black;
 }
 #forecastDIV ul {
     display: flex;
@@ -89,16 +92,16 @@ aside {
     width: 100%;
     list-style: none;
     padding: 0;
-    margin: 0 15px;
     justify-content: center;
 }
 #forecastDIV .dayCard {
     margin: 5px 10px;
-    background-color: var(--teal);
-    width: 200px;
-    height: 300px;
-    border: 2px solid lightgray;
-    border-radius: 20px;
+    padding-top: 10px;
+    background-color: var(--cardBackground);
+    flex: 1 0 150px;
+    height: 200px;
+    border: 2px solid darkslategray;
+    border-radius: 5px;
     box-shadow: 1px 1px 1px darkslategray;
     text-align: center;
 }
@@ -107,5 +110,11 @@ footer {
     font-size: .75rem;
     color: white;
     text-align: center;
-    margin 0 auto;
+    margin: 0 auto;
+}
+@media screen and (max-width: 800px) {
+    header h1 {
+        padding-top: 12px;
+        font-size: 1.5rem;
+    }
 }
