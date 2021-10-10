@@ -1,8 +1,8 @@
 :root {
-    --header: #013579;
-    --teal:#39707e;
-    --lighterTeal: #EAEEFF;
-    --cardBackground: #D1A617;
+    --header: #1A535C;
+    --teal:#4ECDC4;
+    --lighterTeal: #F7FFF7;
+    --cardBackground: #FFE66D;
 }
 
 * {
@@ -111,6 +111,14 @@ footer {
     color: white;
     text-align: center;
     margin: 0 auto;
+}
+
+.custom-button{
+    background-color: var(--cardBackground);
+    box-shadow: 1px 1px 1px darkslategray;
+}
+.custom-button:hover {
+    background-color: #FF6B6B;
 }
 @media screen and (max-width: 800px) {
     header h1 {
