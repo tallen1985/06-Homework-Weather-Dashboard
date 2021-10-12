@@ -18,7 +18,7 @@
         <h1>Weather Dashboard</h1>
     </header>
     <main>
-        <aside id='searchDiv'>
+        <aside id='searchDIV' class="col-6 mx-auto">
             <h2>Search for a City:</h2>
             <form id='searchForm'>
                 <input type="text" id="searchInput" placeholder="San Diego">
@@ -27,9 +27,10 @@
             <ul id="searchHistoryUL">
             </ul>
         </aside>
-        <div id="WeatherDIV">
-            <section id="currentWeatherDIV" class="weatherSection">
-                <h1> <span id="locationName">Location</span> (<span id="todaysDate"></span>) <span id="currentIcon">Icon</span></h1>
+        <div id="weatherDIV">
+            <section id="currentWeatherDIV" class="weatherSection text-center">
+                <h1> <span id="locationName">Location</span></h1> 
+                <h2>(<span id="todaysDate"></span>) <img id="currentIcon"></img></h2>
                 <p>Temp: <span id="currentTemp"></span> &deg F</p>
                 <p>Wind: <span id="currentWind"></span> MPH</p>
                 <p>Humidity: <span id="currentHumidity"></span> %</p>

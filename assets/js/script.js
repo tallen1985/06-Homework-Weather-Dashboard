@@ -1,8 +1,10 @@
 const searchHistoryUL = document.getElementById('searchHistoryUL');
+const searchDIV = document.getElementById('searchDIV')
 const searchForm = document.getElementById('searchForm')
 const searchInput = document.getElementById('searchInput');
 const searchButton = document.getElementById('searchButton');
 const locationName = document.getElementById('locationName');
+const weatherDIV = document.getElementById('weatherDIV')
 const forecastDIV = document.getElementById('forecastDIV');
 const todaysDate = document.getElementById('todaysDate')
 const currentTemp = document.getElementById('currentTemp');
@@ -16,7 +18,7 @@ const apiKey = '1a306f57eaa04b66a65190330210107';
 let weatherLocation = '33912';
 
 let searchItems = [];
-const maxHistoryItems = 10;
+const maxHistoryItems = 5;
 
 function initLocalStorage(){
     if (localStorage.getItem('storedSearches')){
@@ -40,6 +42,8 @@ function createStorageNodes(items) {
 
 
 searchForm.addEventListener('submit', function(e) {
+    searchDIV.classList = "";
+    weatherDIV.style.display = 'block';
     e.preventDefault();
     const input = searchInput.value;
     if(input.length > 0) {
@@ -67,12 +71,14 @@ function currentWeather(location) {
     fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}}&aqi=no`)
         .then(response => response.json())
         .then(weather => {
-            locationName.textContent = weather.location.name;
+            locationName.textContent = weather.location.name + 
+            ', ' + weather.location.region;
             todaysDate.textContent = today.format('MM/DD/YYYY')
             currentHumidity.textContent = weather.current.humidity;
             currentWind.textContent = weather.current.wind_mph;
             currentTemp.textContent = weather.current.temp_f;
             UVColor(weather.current.uv);
+            currentIcon.src = "http:" + weather.current.condition.icon;
             console.log(weather)
         });
 }
