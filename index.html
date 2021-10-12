@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
+    ></script>
     <link href="assets/css/style.css" rel="stylesheet">
     <title>Troy Allen // 06 Homework - Weather Dashboard</title>
 </head>
@@ -25,7 +29,11 @@
         </aside>
         <div id="WeatherDIV">
             <section id="currentWeatherDIV" class="weatherSection">
-                <h1 id="locationName"></h1>
+                <h1> <span id="locationName">Location</span> (<span id="todaysDate"></span>) <span id="currentIcon">Icon</span></h1>
+                <p>Temp: <span id="currentTemp"></span> &deg F</p>
+                <p>Wind: <span id="currentWind"></span> MPH</p>
+                <p>Humidity: <span id="currentHumidity"></span> %</p>
+                <p>UV Index: <span id="currentUV" class="btn btn-sm px-4"></span></p>
             </section>
             
             <section id="forecastDIV" class='weatherSection'>
