@@ -93,6 +93,7 @@ aside {
     list-style: none;
     padding: 0;
     justify-content: center;
+    flex-direction: row;
 }
 #forecastDIV .dayCard {
     margin: 5px 10px;
