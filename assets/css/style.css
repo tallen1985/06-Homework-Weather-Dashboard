@@ -69,6 +69,7 @@ aside {
 #weatherDIV {
     display: none;
     flex: 8 0 350px;
+    background-color: var(--cardBackground);
 }
 .weatherSection {
     background-color: var(--lighterTeal);
@@ -98,14 +99,13 @@ aside {
 }
 #forecastDIV .dayCard {
     margin: 5px 10px;
-    padding-top: 10px;
-    background-color: var(--cardBackground);
+    padding: 10px 10px;
+    
     flex: 1 0 150px;
-    height: 200px;
-    border: 2px solid darkslategray;
-    border-radius: 5px;
-    box-shadow: 1px 1px 1px darkslategray;
-    text-align: center;
+    /* border: 2px solid darkslategray; */
+    /* border-radius: 5px; */
+    /* box-shadow: 1px 1px 1px darkslategray; */
+    
 }
 
 footer {

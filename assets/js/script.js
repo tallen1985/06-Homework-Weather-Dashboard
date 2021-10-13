@@ -14,8 +14,6 @@ const currentHumidity = document.getElementById('currentHumidity');
 const currentUV = document.getElementById('currentUV');
 
 const today = moment();
-const apiKey = '1a306f57eaa04b66a65190330210107';
-let weatherLocation = '33912';
 
 let searchItems = [];
 const maxHistoryItems = 5;
@@ -48,7 +46,6 @@ searchForm.addEventListener('submit', function(e) {
     const input = searchInput.value;
     if(input.length > 0) {
         currentWeather(input);
-        getForecast(input)
         searchItems.unshift(input);
         if(searchItems.length > maxHistoryItems) {
             searchItems.pop();
@@ -68,18 +65,34 @@ searchHistoryUL.addEventListener('click', function(e) {
 })
 
 function currentWeather(location) {
-    fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}}&aqi=no`)
-        .then(response => response.json())
-        .then(weather => {
-            locationName.textContent = weather.location.name + 
-            ', ' + weather.location.region;
-            todaysDate.textContent = today.format('MM/DD/YYYY')
-            currentHumidity.textContent = weather.current.humidity;
-            currentWind.textContent = weather.current.wind_mph;
-            currentTemp.textContent = weather.current.temp_f;
-            UVColor(weather.current.uv);
-            currentIcon.src = "http:" + weather.current.condition.icon;
-            console.log(weather)
+    const apiKey = '1a306f57eaa04b66a65190330210107';
+    const requestURL = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}}&aqi=no`;
+    fetch(requestURL)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (weather) {
+        const longitude = weather.location.lon;
+        const latitude = weather.location.lat;
+    
+        locationName.textContent = weather.location.name + 
+        ', ' + weather.location.region;
+
+        todaysDate.textContent = today.format('MM/DD/YYYY');
+
+        currentHumidity.textContent = weather.current.humidity;
+
+        currentWind.textContent = weather.current.wind_mph;
+
+        currentTemp.textContent = weather.current.temp_f;
+
+        UVColor(weather.current.uv);
+
+        currentIcon.src = "http:" + weather.current.condition.icon;
+
+        console.log(weather)
+
+        getForecast(latitude, longitude);
         });
 }
 
@@ -100,22 +113,43 @@ function UVColor(index) {
     currentUV.textContent = index;
 }
 
-function getForecast(location) {
+function getForecast(lat, lon) {
+    const apiKey = '9eb115b75f669676b72125c5e2e7859a';
+    const requestURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=current,minutely,hourly,alerts&appid=${apiKey}&units=imperial`;
     forecastUL.innerHTML = '';
-    fetch(`https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${location}&days=3&aqi=no&alerts=no`)
-        .then(response => response.json())
-        .then(weather => {
-            for(var x = 0; x < 3; x++){
-                const forecastDay = weather.forecast.forecastday[x];
-                const element = document.createElement('div')
-                    element.className = "forecastDay dayCard";
-                    element.innerHTML = `
-                                            <h4>${forecastDay.date}</h4>
-                                    
-                                            <p>${forecastDay.day.condition.text}</p>
-                                            <p>${forecastDay.day.maxtemp_f} &#176F <br> ${forecastDay.day.mintemp_f} &#176F</p>
-                                        `
-                forecastUL.appendChild(element);
+    fetch(requestURL)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+        console.log(data);
+            for(var x = 0; x < 5; x++){
+                const forecastDay = data.daily[x];
+                const newCard = document.createElement('div')
+                let newEl = document.createElement('h4');
+                newCard.className = "forecastDay dayCard";
+                forecastUL.appendChild(newCard);
+                
+                newEl.textContent = moment.unix(forecastDay.dt).format('ll');
+                newEl.classList = 'text-center'
+                newCard.appendChild(newEl);
+
+                newEl = document.createElement('img');
+                newEl.classList = 'mx-auto d-block'
+                newEl.src = `http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}.png`;
+                newCard.appendChild(newEl);
+
+                newEl = document.createElement('p');
+                newEl.textContent = `Humidity: ${forecastDay.humidity}%`
+                newCard.appendChild(newEl);
+
+                newEl = document.createElement('p');
+                newEl.textContent = `Wind: ${forecastDay.wind_speed} MPH.`
+                newCard.appendChild(newEl);
+
+                newEl = document.createElement('p');
+                newEl.textContent = `Temp: ${Math.floor(forecastDay.temp.max)} / ${Math.floor(forecastDay.temp.min)}`;
+                newCard.appendChild(newEl);
             }
         });
 
