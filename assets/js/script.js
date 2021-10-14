@@ -140,7 +140,7 @@ function getForecast(lat, lon) {
                 newCard.appendChild(newEl);
                 
                 img.classList = 'mx-auto d-block'
-                img.src = `http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}.png`;
+                img.src = `https://openweathermap.org/img/wn/${forecastDay.weather[0].icon}.png`;
                 newEl.appendChild(img);
 
                 newEl = document.createElement('p');
