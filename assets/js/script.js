@@ -125,7 +125,8 @@ function getForecast(lat, lon) {
         console.log(data);
             for(var x = 0; x < 5; x++){
                 const forecastDay = data.daily[x];
-                const newCard = document.createElement('div')
+                const newCard = document.createElement('div');
+                const img = document.createElement('img');
                 let newEl = document.createElement('h4');
                 newCard.className = "forecastDay dayCard";
                 forecastUL.appendChild(newCard);
@@ -134,10 +135,13 @@ function getForecast(lat, lon) {
                 newEl.classList = 'text-center'
                 newCard.appendChild(newEl);
 
-                newEl = document.createElement('img');
-                newEl.classList = 'mx-auto d-block'
-                newEl.src = `http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}.png`;
+                newEl = document.createElement('div');
+                newEl.classList="mx-auto bg-white border rounded mb-2";
                 newCard.appendChild(newEl);
+                
+                img.classList = 'mx-auto d-block'
+                img.src = `http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}.png`;
+                newEl.appendChild(img);
 
                 newEl = document.createElement('p');
                 newEl.textContent = `Humidity: ${forecastDay.humidity}%`
