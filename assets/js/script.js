@@ -88,9 +88,7 @@ function currentWeather(location) {
 
         UVColor(weather.current.uv);
 
-        currentIcon.src = "http:" + weather.current.condition.icon;
-
-        console.log(weather)
+        currentIcon.src = "https:" + weather.current.condition.icon;
 
         getForecast(latitude, longitude);
         });
@@ -122,7 +120,6 @@ function getForecast(lat, lon) {
       return response.json();
     })
     .then(function (data) {
-        console.log(data);
             for(var x = 0; x < 5; x++){
                 const forecastDay = data.daily[x];
                 const newCard = document.createElement('div');
