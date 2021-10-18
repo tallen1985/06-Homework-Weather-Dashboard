@@ -12,6 +12,9 @@
 }
 body {
     background-color: var(--teal);
+    background-image: url('../background.jpeg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 header {
     margin: 10px auto;
