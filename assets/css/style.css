@@ -132,3 +132,9 @@ footer {
         font-size: 1.5rem;
     }
 }
+@supports (-webkit-touch-callout: none) {
+    body {
+        background-image: url('../background.jpeg') center top no-repeat scroll;
+        background-size: auto 100vh;
+    }    
+    }

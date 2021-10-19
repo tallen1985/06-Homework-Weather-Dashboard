@@ -1,3 +1,4 @@
+//Element declarations
 const searchHistoryUL = document.getElementById('searchHistoryUL');
 const searchDIV = document.getElementById('searchDIV')
 const searchForm = document.getElementById('searchForm')
@@ -13,11 +14,14 @@ const currentWind = document.getElementById('currentWind');
 const currentHumidity = document.getElementById('currentHumidity');
 const currentUV = document.getElementById('currentUV');
 
+//Use MomentJS to get current time/date
 const today = moment();
 
+//Initialize Search Items and Max History Items Globally
 let searchItems = [];
 const maxHistoryItems = 5;
 
+//Query Local Storage for existing information, if available populate search History.
 function initLocalStorage(){
     if (localStorage.getItem('storedSearches')){
         searchItems = JSON.parse(localStorage.getItem('storedSearches'));
@@ -27,6 +31,7 @@ function initLocalStorage(){
     }
 }
 
+//Create Storage buttons from local Storage
 function createStorageNodes(items) {
     searchHistoryUL.innerHTML = '';
     for (let x = 0; x < items.length; x++){
@@ -38,7 +43,7 @@ function createStorageNodes(items) {
     searchInput.value = '';
 };
 
-
+//Search Button Event processes
 searchForm.addEventListener('submit', function(e) {
     searchDIV.classList = "";
     weatherDIV.style.display = 'block';
@@ -64,6 +69,8 @@ searchHistoryUL.addEventListener('click', function(e) {
     }
 })
 
+//Function to query API to get current weather and then query secondary API for forecast using Longitude
+//and Latitude.
 function currentWeather(location) {
     const apiKey = '1a306f57eaa04b66a65190330210107';
     const requestURL = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}}&aqi=no`;
@@ -94,6 +101,7 @@ function currentWeather(location) {
         });
 }
 
+//Function to create UV color coded box.
 function UVColor(index) {
     let color = '';
     if(index <= 2) {
@@ -111,6 +119,7 @@ function UVColor(index) {
     currentUV.textContent = index;
 }
 
+//Get Longitude and Latitude from current Weather Query and Fetch forecast API
 function getForecast(lat, lon) {
     const apiKey = '9eb115b75f669676b72125c5e2e7859a';
     const requestURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=current,minutely,hourly,alerts&appid=${apiKey}&units=imperial`;
